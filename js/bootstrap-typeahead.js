@@ -151,7 +151,7 @@ function ($) {
             // Cancel last call if already in progress
             if (this.ajax.xhr) this.ajax.xhr.abort();
             
-            var params = this.ajax.preDispatch ? this.ajax.preDispatch(query) : { query : query };
+            var params = this.ajax.preDispatch ? this.ajax.preDispatch(query) : (this.ajax.getParams ? this.ajax.getParams(query) : { query : query });
             var jAjax = (this.ajax.method === "post") ? $.post : $.get;
             this.ajax.xhr = jAjax(this.ajax.url, params, $.proxy(this.ajaxLookup, this));
             this.ajax.timerId = null;
